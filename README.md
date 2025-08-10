@@ -187,15 +187,5 @@ Access the app at: [http://127.0.0.1:5000](http://127.0.0.1:5000)
 
 ---
 
-## 📜 License & Contact
-
-This project is licensed under the MIT License.
-
-**Created by Rafael Zieganpalg**  
-📧 oldmankokikumar@gmail.com  
-🔗 [GitHub](https://github.com/Rafael-ZP) | [LinkedIn](https://www.linkedin.com/in/rafael-zieganpalg-b8b755238/)
-
----
-
 > “Empowering education with intelligent presence tracking.”
 

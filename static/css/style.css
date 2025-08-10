@@ -1,0 +1,259 @@
+/* Updated style.css */
+:root {
+  --primary-gradient: linear-gradient(135deg, #6B8DD6 0%, #8E37D7 100%);
+  --dark-800: #0a0a0f;
+  --dark-600: #1a1a2f;
+}
+
+body {
+  background: url('https://raketcontent.com/raket_file_m_BSTF_73_C_Aw_fe15b2de19.jpeg') center/cover fixed;
+  min-height: 100vh;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.background-blur {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(10px);
+  z-index: -1;
+}
+
+.glass-container {
+  background: rgba(158, 158, 169, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(187, 174, 174, 0.1);
+  border-radius: 20px;
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 800px;
+  box-shadow: 0 8px 32px rgba(203, 184, 184, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.glass-container:hover {
+  transform: translateY(-5px);
+}
+
+.btn-primary-glow {
+  background: var(--primary-gradient);
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.btn-primary-glow::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, 
+    rgba(255,255,255,0) 20%,
+    rgba(255,255,255,0.1) 50%,
+    rgba(255,255,255,0) 80%
+  );
+  transform: rotate(30deg);
+  animation: btn-glow 3s infinite;
+}
+
+@keyframes btn-glow {
+  0% { transform: translateX(-150%) rotate(30deg); }
+  100% { transform: translateX(150%) rotate(30deg); }
+}
+
+.status-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.pulse {
+  animation: pulse-animation 2s infinite;
+}
+
+@keyframes pulse-animation {
+  0% { box-shadow: 0 0 0 0 rgba(110, 223, 107, 0.4); }
+  70% { box-shadow: 0 0 0 12px rgba(110, 223, 107, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(110, 223, 107, 0); }
+}
+
+.scroll-fade {
+  mask-image: linear-gradient(to bottom, 
+    black calc(100% - 40px), 
+    transparent 100%
+  );
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+#video-container {
+  border-radius: 20px;
+  border: 2px solid rgba(255,255,255,0.1);
+  background: rgba(0,0,0,0.4);
+  overflow: hidden;
+  position: relative;
+}
+
+#video-overlay {
+  background: rgba(0,0,0,0.7);
+  padding: 1rem;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  animation: slideInUp 0.5s ease;
+}
+
+/* Add these to existing button styles */
+#stopBtn {
+  background: rgba(255, 75, 75, 0.9);
+  border: none;
+  transition: all 0.3s ease;
+}
+
+#scanBtn {
+  background: var(--primary-gradient);
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.loading-spinner {
+  width: 24px;
+  height: 24px;
+  border: 3px solid #fff;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Additional Styles */
+.gradient-bg {
+  background: linear-gradient(135deg, rgba(107,141,214,0.2) 0%, rgba(142,55,215,0.2) 100%);
+}
+
+.table-dark {
+  --bs-table-bg: rgba(25, 25, 45, 0.6);
+  --bs-table-border-color: rgba(255,255,255,0.1);
+}
+
+.table-hover tbody tr:hover {
+  background: rgba(255,255,255,0.05);
+  transform: translateX(10px);
+  transition: all 0.3s ease;
+}
+
+.btn-danger-glow {
+  background: linear-gradient(135deg, rgba(255,75,75,0.9) 0%, rgba(153,0,0,0.9) 100%);
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.form-control {
+  transition: all 0.3s ease;
+  color: #0f0f0f !important;
+}
+
+.form-control:focus {
+  background: rgba(255,255,255,0.05);
+  border-color: #6B8DD6;
+  box-shadow: 0 0 15px rgba(107,141,214,0.3);
+}
+
+.invalid-feedback {
+  animation: shake 0.4s ease;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(8px); }
+  75% { transform: translateX(-8px); }
+}
+
+.verification-interface {
+  position: relative;
+  padding: 2rem;
+  border-radius: 20px;
+  background: rgba(0,0,0,0.3);
+}
+
+#video-overlay {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1rem 2rem;
+  backdrop-filter: blur(10px);
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+.badge.rounded-pill {
+  padding: 0.5em 1.2em;
+  font-weight: 500;
+}
+
+/* Video Container Enhancements */
+#video-container {
+  transition: transform 0.3s ease;
+}
+
+#video-container:hover {
+  transform: scale(1.01);
+}
+
+.btn-secondary-glow {
+  background: linear-gradient(135deg, rgba(100,100,120,0.9) 0%, rgba(60,60,80,0.9) 100%);
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary-glow:hover {
+  box-shadow: 0 0 15px rgba(100,100,120,0.5);
+}
+
+.status-text {
+  color: #fff !important;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+}
+
+.glass-container p,
+.glass-container h5,
+.glass-container .lead {
+  color: #fff !important;
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translate(-50%, 100%);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+}

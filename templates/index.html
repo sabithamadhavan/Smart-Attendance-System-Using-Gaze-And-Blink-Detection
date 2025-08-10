@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lock-In 👀 🔐</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+</head>
+<body class="dark-theme-bg">
+  <div class="background-blur"></div>
+  
+  <nav class="navbar navbar-dark bg-dark-800 border-bottom border-dark-600">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src="{{ url_for('static', filename='klipartz.com.png') }}" alt="Logo" width="40" class="me-2"> Lock-In 👀 🔐
+      </a>
+      <div class="navbar-text">
+        <span class="badge bg-primary">Live</span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container text-center mt-5 pt-4">
+    <h1 class="animate__animated animate__fadeInDown display-4 fw-bold mb-4 gradient-text">Secure Attendance via Gaze & Blink Detection</h1>
+    
+    <div class="glass-container animate__animated animate__fadeInUp">
+      <div class="status-indicator pulse"></div>
+      <h3 class="mb-4">System Ready</h3>
+      <p class="lead">By proceeding, you agree to our biometric data collection policy</p>
+      
+      <div class="terms-box scroll-fade">
+        <h5>Terms & Conditions</h5>
+        <p class="small">1. System uses facial recognition technology<br>
+        2. Data is encrypted and stored securely<br>
+        3. Maximum session duration: 5 minutes</p>
+      </div>
+
+      <a href="{{ url_for('register') }}" class="btn btn-primary-glow mt-4 animate__animated animate__pulse animate__delay-1s">
+        START VERIFICATION ➔
+      </a>
+    </div>
+
+    <div class="system-status mt-5 animate__animated animate__fadeIn">
+      <div class="d-flex justify-content-center gap-5">
+        <div class="status-item">
+          <div class="status-dot bg-success"></div>
+          <span>Camera Ready</span>
+        </div>
+        <div class="status-item">
+          <div class="status-dot bg-success"></div>
+          <span>Encryption Active</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="fixed-bottom bg-dark-800 border-top border-dark-600">
+    <div class="container py-3 text-center small">
+      © 2025 AttendanceSecure Pro. All rights reserved. | v2.4.1
+    </div>
+  </footer>
+</body>
+</html>

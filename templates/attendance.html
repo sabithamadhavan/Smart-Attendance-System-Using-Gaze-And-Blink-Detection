@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Live Verification</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <style>
+    /* Horizontal Video Container */
+    #video-container {
+      width: 100%;
+      max-width: 1280px;
+      aspect-ratio: 16/9;
+      margin: auto;
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+      border: 2px solid rgba(255,255,255,0.1);
+      background: rgba(0,0,0,0.4);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    }
+
+    #liveFeed {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    #video-overlay {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.7);
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.2rem;
+      backdrop-filter: blur(5px);
+      animation: slideInUp 0.5s ease;
+    }
+
+    .status-text {
+      color: #fff !important;
+      font-weight: 300;
+      letter-spacing: 0.5px;
+    }
+
+    @media (max-width: 768px) {
+      #video-container {
+        border-radius: 12px;
+        max-width: 95%;
+      }
+      
+      #video-overlay {
+        font-size: 1rem;
+        padding: 0.8rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body class="dark-theme-bg">
+  <div class="background-blur"></div>
+  
+  <nav class="navbar navbar-dark bg-dark-800 border-bottom border-dark-600">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src="{{ url_for('static', filename='klipartz.com.png') }}" alt="Logo" width="40" class="me-2"> Lock-In 👀 🔐
+      </a>
+      <div class="navbar-text">
+        <span class="badge bg-primary">Active Session</span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container mt-5 pt-4">
+    <div class="glass-container animate__animated animate__fadeInUp">
+      <div class="status-indicator pulse"></div>
+      <h2 class="text-center mb-4 gradient-text">Live Verification Portal</h2>
+      
+      <div class="verification-interface">
+        <div id="video-container" class="animate__animated animate__fadeIn">
+          <img id="liveFeed" src="{{ url_for('video_feed') }}" alt="Live Feed">
+          <div id="video-overlay">
+            <div class="loading-spinner"></div>
+            <span class="status-text">Verifying Identity...</span>
+          </div>
+        </div>
+
+        <div class="control-panel mt-4 animate__animated animate__fadeIn">
+          <div class="d-grid gap-3 col-md-8 mx-auto">
+            <button id="stopBtn" class="btn btn-danger-glow">
+              ⏹ Stop Verification
+            </button>
+            <div class="d-flex gap-3 justify-content-center flex-wrap">
+              <button id="scanBtn" class="btn btn-primary-glow">
+                🔄 Rescan Session
+              </button>
+              <a href="{{ url_for('logs') }}" class="btn btn-secondary-glow">
+                📜 Show Logs
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div id="attendanceMessage" class="mt-4 text-center fs-5 animate__animated animate__fadeIn" style="color: white;"></div>
+      </div>
+    </div>
+
+    <div class="system-status mt-5 animate__animated animate__fadeIn">
+      <div class="d-flex justify-content-center gap-5 flex-wrap">
+        <div class="status-item">
+          <div class="status-dot bg-success"></div>
+          <span class="status-text">Face Detection Active</span>
+        </div>
+        <div class="status-item">
+          <div class="status-dot bg-warning"></div>
+          <span class="status-text">Verification In Progress</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="fixed-bottom bg-dark-800 border-top border-dark-600">
+    <div class="container py-3 text-center small" style="color: rgba(255,255,255,0.7);">
+      © 2025 AttendanceSecure Pro. All rights reserved. | v2.4.1
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('stopBtn').addEventListener('click', () => {
+      fetch('/stop', { method: 'POST' });
+      document.getElementById('liveFeed').src = '';
+    });
+
+    document.getElementById('scanBtn').addEventListener('click', () => {
+      fetch('/restart_feed', { method: 'POST' }).then(() => {
+        document.getElementById('liveFeed').src = '/video_feed';
+      });
+    });
+
+    setInterval(() => {
+      fetch('/check_attendance')
+        .then(res => res.json())
+        .then(data => {
+          if (data.marked) {
+            document.getElementById("attendanceMessage").innerText = "Attendance Marked ✅";
+          }
+        });
+    }, 2000);
+  </script>
+</body>
+</html>

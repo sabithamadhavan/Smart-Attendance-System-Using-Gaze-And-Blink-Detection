@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Registration Portal</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+</head>
+<body class="dark-theme-bg">
+  <div class="background-blur"></div>
+  
+  <nav class="navbar navbar-dark bg-dark-800 border-bottom border-dark-600">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src="{{ url_for('static', filename='klipartz.com.png') }}" alt="Logo" width="40" class="me-2"> Lock-In 👀 🔐
+      </a>
+      <div class="navbar-text">
+        <span class="badge bg-primary">Live Session</span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container mt-5 pt-4">
+    <div class="glass-container animate__animated animate__fadeInUp">
+      <div class="status-indicator pulse"></div>
+      <h2 class="text-center mb-4 gradient-text">Registration Portal</h2>
+      
+      <form method="POST" action="{{ url_for('register') }}" class="needs-validation" novalidate>
+        <div class="form-floating mb-4 animate__animated animate__fadeInLeft">
+          <input type="text" class="form-control bg-dark-600 border-dark" id="name" name="name" required autofocus>
+          <label for="name">Full Name</label>
+          <div class="invalid-feedback">Please enter your name</div>
+        </div>
+        
+        <div class="form-floating mb-4 animate__animated animate__fadeInRight">
+          <input type="date" class="form-control bg-dark-600 border-dark" id="date" name="date" required value="{{ today }}">
+          <label for="date">Attendance Date</label>
+          <div class="invalid-feedback">Please select a date</div>
+        </div>
+
+        <div class="d-grid gap-2">
+          <button type="submit" class="btn btn-primary-glow animate__animated animate__pulse">
+            PROCEED TO VERIFICATION ➔
+            <span class="ms-2 loading-spinner" style="display: none;"></span>
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div class="system-status mt-5 animate__animated animate__fadeIn">
+      <div class="d-flex justify-content-center gap-5">
+        <div class="status-item">
+          <div class="status-dot bg-success"></div>
+          <span>Secure Connection</span>
+        </div>
+        <div class="status-item">
+          <div class="status-dot bg-warning"></div>
+          <span>Validation Required</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="fixed-bottom bg-dark-800 border-top border-dark-600">
+    <div class="container py-3 text-center small">
+      © 2025 AttendanceSecure Pro. All rights reserved. | v2.4.1
+    </div>
+  </footer>
+
+  <script>
+    document.querySelector('form').addEventListener('submit', (e) => {
+      const spinner = document.querySelector('.loading-spinner');
+      spinner.style.display = 'inline-block';
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+    "accuracy": 0.99875,
+    "classification_report": "              precision    recall  f1-score   support\n\n    Open Eye       1.00      1.00      1.00       400\n  Closed Eye       1.00      1.00      1.00       400\n\n    accuracy                           1.00       800\n   macro avg       1.00      1.00      1.00       800\nweighted avg       1.00      1.00      1.00       800\n",
+    "confusion_matrix": [
+        [
+            399,
+            1
+        ],
+        [
+            0,
+            400
+        ]
+    ]
+}

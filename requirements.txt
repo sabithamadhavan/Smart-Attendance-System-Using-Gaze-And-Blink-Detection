@@ -1,0 +1,42 @@
+# Core AI/ML Libraries
+numpy
+pandas
+scikit-learn
+matplotlib
+seaborn
+tensorflow
+keras
+joblib
+
+# Computer Vision
+opencv-python
+dlib
+Pillow
+
+# Flask Web Framework
+flask
+flask-cors
+flask-restful
+
+# Data Handling & Visualization
+requests
+json5
+python-dotenv
+
+# Model Deployment & Utilities
+gunicorn
+waitress
+gevent
+
+# For Better Debugging and Development
+ipython
+notebook
+jupyterlab
+
+# Optional - For dataset handling and augmentation
+imgaug
+albumentations
+
+# Optional - Model interpretability / explanation
+lime
+shap
